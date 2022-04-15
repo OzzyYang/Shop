@@ -1,0 +1,4 @@
+#这个是不同步的文件列表
+/node_modules
+/unpackage/dist
+/.hbuilderxgit
