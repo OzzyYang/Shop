@@ -8,7 +8,34 @@
 			}
 
 		}
-	],
+	    ,{
+            "path" : "pages/category/category",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/cart/cart",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/my/my",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"tabBar": {
 		"selectedColor": "#C00000",
 		"list": [{
@@ -18,7 +45,7 @@
 				"selectedIconPath": "static/tab_icons/home-active.png"
 			},
 			{
-				"pagePath": "pages/cate/cate",
+				"pagePath": "pages/category/category",
 				"text": "分类",
 				"iconPath": "static/tab_icons/cate.png",
 				"selectedIconPath": "static/tab_icons/cate-active.png"
