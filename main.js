@@ -30,7 +30,7 @@ import {
 uni.$http = $http
 
 //请求的根路径
-$http.baseUrl = 'https://www.uinav.com'
+$http.baseUrl = 'http://www.uinav.com'
 
 // 请求拦截器：请求开始之前做一些事情
 $http.beforeRequest = function(options) {
