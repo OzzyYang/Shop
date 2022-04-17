@@ -145,7 +145,7 @@
 
 <style lang="scss">
 	swiper {
-		height: 330rpx;
+		height: 330upx;
 
 		.swiper-item,
 		image {
@@ -158,20 +158,20 @@
 	.navigationBar {
 		display: flex;
 		justify-content: space-around;
-		margin: 15rpx 0;
+		margin: 15upx 0;
 
 		image {
-			width: 128rpx;
-			height: 140rpx;
+			width: 128upx;
+			height: 140upx;
 		}
 	}
 
 	.floorList {
 		.floorItem {
-			margin: 4rpx;
+			margin: 4upx;
 
 			.floorTitle {
-				height: 60rpx;
+				height: 60upx;
 				width: 100%;
 			}
 
@@ -179,20 +179,24 @@
 				width: 100%;
 				display: flex;
 				justify-content: space-around;
-				padding-left: 4rpx;
-				padding-right: 4rpx;
+				padding-left: 4upx;
+				padding-right: 4upx;
 
 				.floorBigImage {
-					width: 33%;
+					flex: 1;
 					height: 100%;
+					padding: 0;
+					display: flex;
+					justify-content: center;
+					align-items: center;
 				}
 
 				.floorSmallImage {
-					width: 66%;
+					flex: 2;
 					display: flex;
 					flex-wrap: wrap;
 					justify-content: space-around;
-					align-items: center;
+					padding-right:8upx ;
 				}
 			}
 
