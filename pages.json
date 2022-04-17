@@ -6,32 +6,33 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/category/category",
+			"style": {
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/cart/cart",
+			"style": {
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/my/my",
+			"style": {
+				"enablePullDownRefresh": false
+			}
+
 		}
-	    ,{
-            "path" : "pages/category/category",
-            "style" :                                                                                    
-            {
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/cart/cart",
-            "style" :                                                                                    
-            {
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/my/my",
-            "style" :                                                                                    
-            {
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+	],
+	"subPackages": [{
+		"root": "subpkg",
+		"pages": [{
+			"path": "goods_detail/goods_detail",
+			"style": {}
+		}]
+	}],
 	"tabBar": {
 		"selectedColor": "#C00000",
 		"list": [{
