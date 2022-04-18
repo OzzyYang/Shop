@@ -30,7 +30,16 @@
 		"root": "subpkg",
 		"pages": [{
 			"path": "goods_detail/goods_detail",
-			"style": {}
+			"style": {
+				"navigationBarTitleText": "商品详情页"
+			}
+		}, {
+			"path": "search/search",
+			"style": {
+				"navigationBarTitleText": "搜索",
+				"enablePullDownRefresh": false
+			}
+
 		}]
 	}],
 	"tabBar": {

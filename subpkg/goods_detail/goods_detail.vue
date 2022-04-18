@@ -1,10 +1,9 @@
 <template>
 	<view>
-		商品详情页<br>
 		当前的页面参数为：<br>
-		cid={{cid}}<br>
-		goods_id={{goods_id}}<br>
-		query={{query}}<br>
+		分类id={{cid}}<br>
+		商品id={{goods_id}}<br>
+		查询={{query}}<br>
 	</view>
 </template>
 
@@ -18,7 +17,7 @@
 			};
 		},
 		onLoad(option) {
-			console.log(option.cid, option.goods_id, option.query)
+			// console.log(option.cid, option.goods_id, option.query)
 			this.cid = option.cid
 			this.goods_id = option.goods_id
 			this.query = option.query

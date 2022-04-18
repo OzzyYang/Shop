@@ -1,5 +1,9 @@
 <template>
 	<view>
+		<!-- 使用自定义的搜索组件 -->
+		<view class="searchBoxContainer">
+			<my-search></my-search>
+		</view>
 		<view class="scrollViewContainer">
 			<!-- 左侧的父级分类视图 -->
 			<scroll-view class="leftScrollView" scroll-y :style="{height:windowHeight+'px'}">
@@ -18,7 +22,8 @@
 					<!-- 二级分类视图 -->
 					<view class="twoLevel">
 						<navigator class="twoLevelContent" v-for="(twoLevelItem,twoLevelIndex) in oneLevelItem.children"
-							:key="twoLevelIndex" :url="'../../subpkg/goods_detail/goods_detail?cid='+twoLevelItem.cat_id">
+							:key="twoLevelIndex"
+							:url="'../../subpkg/goods_detail/goods_detail?cid='+twoLevelItem.cat_id">
 							<image :src="twoLevelItem.cat_icon"></image>
 							<text>{{twoLevelItem.cat_name}}</text>
 						</navigator>
@@ -32,9 +37,10 @@
 
 <script>
 	export default {
+
 		data() {
 			return {
-				//窗口可用高度=屏幕高度 - navigationBar高度 - tabBar 高度
+				//窗口可用高度=屏幕高度 - navigationBar高度 - tabBar 高度 -自定义搜索栏的高度
 				windowHeight: 0,
 				//分类数据列表
 				categoryList: [],
@@ -78,7 +84,7 @@
 			//获取系统信息
 			const sysInfo = uni.getSystemInfoSync()
 			console.log(sysInfo)
-			this.windowHeight = sysInfo.windowHeight
+			this.windowHeight = sysInfo.windowHeight - 50
 			//获取分类数据列表
 			this.getCategoryList()
 		}
@@ -102,10 +108,11 @@
 				&.active {
 					background-color: #ffffff;
 					position: relative;
+					color: #f00000;
 
 					// 渲染激活项左侧的红色指示边线
 					&::before {
-						content: ' ';
+						content: '';
 						display: block;
 						width: 6upx;
 						height: 60upx;
