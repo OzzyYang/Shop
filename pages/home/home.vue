@@ -4,7 +4,6 @@
 		<view class="mySearchBox">
 			<my-search></my-search>
 		</view>
-
 		<!-- 轮播图区域 -->
 		<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">
 			<!-- 循环渲染轮播图 -->

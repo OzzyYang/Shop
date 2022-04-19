@@ -82,7 +82,7 @@
 		},
 		onLoad(options) {
 			//获取查询的参数
-			this.queryList.query = options.query || '服饰'
+			this.queryList.query = options.query || ''
 			this.queryList.cid = options.cid || ''
 			this.getGoodsList()
 		}
