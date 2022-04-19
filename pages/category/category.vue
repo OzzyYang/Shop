@@ -23,7 +23,7 @@
 					<view class="twoLevel">
 						<navigator class="twoLevelContent" v-for="(twoLevelItem,twoLevelIndex) in oneLevelItem.children"
 							:key="twoLevelIndex"
-							:url="'../../subpkg/goods_detail/goods_detail?cid='+twoLevelItem.cat_id">
+							:url="'../../subpkg/goods_list/goods_list?cid='+twoLevelItem.cat_id">
 							<image :src="twoLevelItem.cat_icon"></image>
 							<text>{{twoLevelItem.cat_name}}</text>
 						</navigator>

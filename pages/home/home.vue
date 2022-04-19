@@ -132,7 +132,7 @@
 						// 通过双层 forEach 循环，处理 URL 地址
 						res.message.forEach(floor => {
 							floor.product_list.forEach(product => {
-								product.url = '/subpkg/goods_detail/goods_detail?' + product
+								product.url = '/subpkg/goods_list/goods_list?' + product
 									.navigator_url.split('?')[1]
 
 							})

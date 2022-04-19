@@ -40,6 +40,15 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "goods_list/goods_list",
+			"style": {
+				"navigationBarTitleText": "商品列表",
+				"enablePullDownRefresh": true,
+				"onReachBottomDistance": 200,
+				"backgroundColor":"#f3f3f3"
+			}
+
 		}]
 	}],
 	"tabBar": {
