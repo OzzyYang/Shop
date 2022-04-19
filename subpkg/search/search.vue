@@ -100,8 +100,8 @@
 						//保存用户确认并搜索成功的内容
 						if (isConfirm) {
 							this.saveSearchHistory()
-							if(this.searchAdvice.length===0){
-								uni.$showMsg("未搜索到内容",2000,"none")
+							if (this.searchAdvice.length === 0) {
+								uni.$showMsg("未搜索到内容", 2000, "none")
 							}
 						}
 					}
