@@ -23,12 +23,15 @@
 
 <script>
 	export default {
+		//过滤器
 		filters: {
+			//将商品的价格固定为包含两位小数的格式
 			toFixed(num) {
 				return Number(num).toFixed(2)
 			}
 		},
 		props: {
+			//组件要展示的商品对象
 			goodsItem: {
 				type: Object,
 				// default: {}
@@ -41,6 +44,9 @@
 			};
 		},
 		methods: {
+			/**
+			 * 跳转至商品详情页
+			 */
 			toDetail() {
 				uni.navigateTo({
 					url: '../../subpkg/goods_detail/goods_detail?goods_id=' + this.goodsItem.goods_id
