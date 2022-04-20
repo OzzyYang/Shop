@@ -1,9 +1,6 @@
 <template>
 	<view>
-		<!-- 购买导航栏 -->
-		<view class="goodsNavigationContainer">
-			<uni-goods-nav @click="onClick" />
-		</view>
+
 		<!-- 轮播图区域 -->
 		<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">
 			<swiper-item v-for="(item,index) in goodsInfo.pics" :key="index">
@@ -25,7 +22,12 @@
 			</view>
 		</view>
 		<!-- 商品详情区域 -->
-		<rich-text :nodes="goodsInfo.goods_introduce"></rich-text>
+		<rich-text class="goodsDetailContainer" :nodes="goodsInfo.goods_introduce"></rich-text>
+		<!-- 购买导航栏 -->
+		<view class="goodsNavigationContainer">
+			<uni-goods-nav :buttonGroup="customButtomGroup" :options="options" :fill="true" @click="onClick"
+				@buttonClick="buttonClick" />
+		</view>
 	</view>
 </template>
 
@@ -33,9 +35,30 @@
 	export default {
 		data() {
 			return {
-				// goodsId: 0,
-				goodsInfo: {}
-			};
+				goodsInfo: {},
+				options: [{
+					icon: 'shop',
+					text: '店铺',
+					info: 0,
+				}, {
+					icon: 'cart',
+					text: '购物车',
+					info: 2,
+					infoBackgroundColor: '#ec0000',
+					infoColor: "#f5f5f5"
+				}],
+				customButtomGroup: [{
+						text: '加入购物车',
+						backgroundColor: 'linear-gradient(90deg,  #f89d00, #e25300)',
+						color: '#fff'
+					},
+					{
+						text: '立即购买',
+						backgroundColor: 'linear-gradient(90deg, #ea3a00, #c00000)',
+						color: '#fff'
+					}
+				]
+			}
 		},
 		methods: {
 			async getGoodsInfo(goodsId) {
@@ -72,8 +95,32 @@
 					urls: this.goodsInfo.pics.map(x => x.pics_big)
 				})
 			},
-			onClick() {
-				uni.$showMsg("点击购买按钮", 1500, "none")
+			onClick(e) {
+				switch (e.index) {
+					case 0:
+						uni.$showMsg("点击了店铺", 1500, 'none')
+						break;
+
+					case 1:
+						uni.switchTab({
+							url: '../../pages/cart/cart'
+						})
+						break;
+				}
+			},
+			buttonClick(e) {
+				switch (e.content.text) {
+					case "加入购物车":
+						this.options[1].info += 1
+						break;
+
+					case "立即购买":
+						uni.$showMsg("点击了购买", 1500, 'none')
+						// uni.navigateTo({
+						// 	url: '../../pages/cart/cart'
+						// })
+						break;
+				}
 			}
 		},
 		onLoad(option) {
@@ -94,13 +141,7 @@
 		}
 	}
 
-	.goodsNavigationContainer {
-		// 为商品导航组件添加固定定位
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-	}
+
 
 	.goodsInfoContainer {
 		width: 100%;
@@ -153,5 +194,28 @@
 				margin-right: 30upx;
 			}
 		}
+	}
+
+	.goodsDetailContainer {
+		//防止商品被导航栏遮盖
+		padding-bottom: 100upx;
+	}
+
+	.goodsNavigationContainer {
+		border-top: 2upx solid #ebebeb;
+		// 为商品导航组件添加固定定位，使其浮在底部
+		/* #ifndef APP-NVUE */
+		display: flex;
+		/* #endif */
+		flex-direction: column;
+		position: fixed;
+		left: 0;
+		right: 0;
+		z-index: 999;
+		/* #ifdef H5 */
+		left: var(--window-left);
+		right: var(--window-right);
+		/* #endif */
+		bottom: 0;
 	}
 </style>

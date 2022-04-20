@@ -55,7 +55,6 @@
 					complete && complete()
 				}
 			}
-
 		},
 		/**
 		 * 上拉刷新事件
