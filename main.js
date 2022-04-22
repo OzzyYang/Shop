@@ -1,11 +1,15 @@
 import App from './App'
+//导入store的实例对象
+import store from '@/store/store.js'
 
 // #ifndef VUE3
 import Vue from 'vue'
 Vue.config.productionTip = false
 App.mpType = 'app'
 const app = new Vue({
-	...App
+	...App,
+	//将store挂在到vue实例上
+	store
 })
 app.$mount()
 // #endif
@@ -21,6 +25,7 @@ export function createApp() {
 	}
 }
 // #endif
+
 
 /*  导入网络请求的包  */
 import {
@@ -43,6 +48,7 @@ $http.beforeRequest = function(options) {
 $http.afterRequest = function() {
 	uni.hideLoading()
 }
+
 
 /*  全局数据加载失败的showMessage方法  */
 uni.$showMsg = function(title = '数据加载失败', duration = 1500, icon = 'error') {

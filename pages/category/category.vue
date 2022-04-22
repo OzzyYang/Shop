@@ -22,8 +22,7 @@
 					<!-- 二级分类视图 -->
 					<view class="twoLevel">
 						<navigator class="twoLevelContent" v-for="(twoLevelItem,twoLevelIndex) in oneLevelItem.children"
-							:key="twoLevelIndex"
-							:url="'../../subpkg/goods_list/goods_list?cid='+twoLevelItem.cat_id">
+							:key="twoLevelIndex" :url="'../../subpkg/goods_list/goods_list?cid='+twoLevelItem.cat_id">
 							<image :src="twoLevelItem.cat_icon"></image>
 							<text>{{twoLevelItem.cat_name}}</text>
 						</navigator>
@@ -36,8 +35,12 @@
 </template>
 
 <script>
-	export default {
+	// 导入自己封装的 mixin 模块
+	import badgeMix from '@/mixins/tabBar_badge.js'
 
+
+	export default {
+		mixins: [badgeMix],
 		data() {
 			return {
 				//窗口可用高度=屏幕高度 - navigationBar高度 - tabBar 高度 -自定义搜索栏的高度

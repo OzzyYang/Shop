@@ -1,6 +1,5 @@
 <template>
 	<view>
-
 		<!-- 轮播图区域 -->
 		<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">
 			<swiper-item v-for="(item,index) in goodsInfo.pics" :key="index">
@@ -32,7 +31,44 @@
 </template>
 
 <script>
+	//从vuex中按需导出mapState辅助方法
+	import {
+		mapState,
+		mapMutations,
+		mapGetters
+	} from 'vuex'
+
 	export default {
+		computed: {
+			/*调用mapState方法，把m_cart模块中的cart数组映射到当前页面中，作为计算属性来使用
+			...mapState('模块的名称',['要映射的数据名称1','要映射的数据名称2'])*/
+			...mapState('m_cart', ['cart']),
+			// 把 m_cart 模块中的 addToCart 方法映射到当前页面使用
+			...mapGetters('m_cart', ['getCartSize'])
+		},
+		//监听器
+		watch: {
+			//使用对象的形式来定义 watch 侦听器（详细文档请参考 Vue 官方的watch 侦听器教程）
+			// 定义 getCartSize 侦听器，指向一个配置对象
+			getCartSize: {
+				// handler 属性用来定义侦听器的 function 处理函数
+				handler(newVal) {
+					const findResult = this.options.find(x => x.text === '购物车')
+					if (findResult) {
+						findResult.info = newVal
+					}
+				},
+				// immediate 属性用来声明此侦听器，是否在页面初次加载完毕后立即调用
+				immediate: true
+			}
+			// 下面的方法定义的监听器在页面首次加载后不会被调用。因此导致了商品详情页在首次加载完毕之后，不会将商品的总数量显示到商品导航区域。
+			// getCartSize(newValue) {
+			// 	const findResult = this.options.find(x => x.text === '购物车')
+			// 	if (findResult) {
+			// 		findResult.info = newValue
+			// 	}
+			// }
+		},
 		data() {
 			return {
 				goodsInfo: {},
@@ -43,7 +79,7 @@
 				}, {
 					icon: 'cart',
 					text: '购物车',
-					info: 2,
+					info: 0,
 					infoBackgroundColor: '#ec0000',
 					infoColor: "#f5f5f5"
 				}],
@@ -61,6 +97,8 @@
 			}
 		},
 		methods: {
+			// 把 m_cart 模块中的 addToCart 方法映射到当前页面使用
+			...mapMutations('m_cart', ['addToCart']),
 			async getGoodsInfo(goodsId) {
 				const {
 					data: res
@@ -111,7 +149,15 @@
 			buttonClick(e) {
 				switch (e.content.text) {
 					case "加入购物车":
-						this.options[1].info += 1
+						const goods = {
+							goods_id: this.goodsInfo.goods_id,
+							goods_name: this.goodsInfo.goods_name,
+							goods_price: this.goodsInfo.goods_price,
+							goods_count: 1,
+							goods_small_logo: this.goodsInfo.goods_small_logo,
+							goods_state: true
+						}
+						this.addToCart(goods)
 						break;
 
 					case "立即购买":
