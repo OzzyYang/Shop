@@ -2,11 +2,12 @@
 	<view>
 		<view class="addressBoxContainer">
 			<view class="userInfo">
-				<view class="userName">收货人：陈小娇</view>
-				<view class="phoneNumber">电话：18457051787</view>
-				<view class="address">收货地址：湖南省长沙市岳麓区岳麓街道唯盛园小区12栋一单元</view>
+				<view class="userName">收货人：{{address.userName}}</view>
+				<view class="telNumber">电话：{{address.telNumber}}</view>
+				<view class="address">
+					收货地址：{{address.provinceName + address.cityName + address.countyName + address.detailInfo}}</view>
 			</view>
-			<uni-icons class="edit" type="compose" :size="28"></uni-icons>
+			<uni-icons class="edit" type="compose" :size="28" @click="editTabHandler"></uni-icons>
 		</view>
 	</view>
 </template>
@@ -14,10 +15,16 @@
 <script>
 	export default {
 		name: "my-address",
+		props: {
+			//收货地址
+			address: {}
+		},
 		data() {
-			return {
-				//收货地址
-				address: {}
+			return {}
+		},
+		methods: {
+			editTabHandler() {
+				this.$emit('address-edit')
 			}
 		}
 	}
@@ -25,16 +32,16 @@
 
 <style lang="scss">
 	.addressBoxContainer {
-		height: 100%;
+		height: 160upx;
 		width: 100%;
-		padding: 20upx 10upx;
+		padding: 10upx 10upx;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		font-size: 28upx;
+		font-size: 30upx;
 
 		.userInfo {
-			height: 70%;
+			height: 100%;
 			flex: 9;
 			display: flex;
 			flex-wrap: wrap;
@@ -42,25 +49,33 @@
 			justify-content: space-between;
 
 			.userName {
-				height: 50%;
+				height: 33.333%;
 				width: 40%;
+				display: flex;
+				align-items: flex-end;
 			}
 
-			.phoneNumber {
-				height: 50%;
+			.telNumber {
+				height: 33.333%;
 				width: 58%;
 				text-align: right;
 				margin-right: 2%;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-end;
 			}
 
 			.address {
-				height: 50%;
+				margin: 10upx 0;
+				height: 66.666%;
 				width: 100%;
+				display: flex;
+				align-items: center;
 			}
 		}
 
 		.edit {
-			height: 70%;
+			height: 100%;
 			flex: 1;
 			display: flex;
 			justify-content: center;

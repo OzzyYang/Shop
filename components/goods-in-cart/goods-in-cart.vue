@@ -3,7 +3,6 @@
 		<view class="goodInfoContainer">
 			<view class="goodRadio">
 				<radio color="#c00000" :checked="good.goods_state" @click="radioClickHandler" />
-				<!-- <uni-icons type="checkbox" size="25" color="#c00000"></uni-icons> -->
 			</view>
 			<view class="goodLogo">
 				<image :src="good.goods_small_logo" mode="aspectFit"></image>
@@ -49,7 +48,7 @@
 				this.$emit('numberbox-change', {
 					// 商品的 Id
 					goods_id: this.good.goods_id,
-					// 商品最新的勾选状态
+					// 商品最新的数量值
 					goods_count: newValue
 				})
 			}

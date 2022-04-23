@@ -9,10 +9,14 @@ export default {
 		 *{goods_id,goods_name,goods_price,goods_count,goods_small_logo,goods_state}
 		 */
 		cart: JSON.parse(uni.getStorageSync('cart') || '[]') //读取本地存储的购物车数据，对 cart 数组进行初始化
-	}),
 
+	}),
+	watch: {
+
+	},
 	//模块的mutations方法
 	mutations: {
+
 		/**
 		 * 加入购物车
 		 * @param {Object} state
@@ -34,10 +38,22 @@ export default {
 		 * 根据商品的ID从cart数组中删除对应的商品
 		 * @param {Object} good
 		 */
-		deleteGood(state,good) {
+		deleteGood(state, good) {
 			// 调用数组的 filter 方法进行过滤
 			state.cart = state.cart.filter(x => x.goods_id !== good.goods_id)
 			// 持久化存储到本地
+			this.commit('m_cart/saveToStorage')
+		},
+		/**
+		 * 将所有购物车中的商品状态设置为isChecked属性
+		 * @param {Object} state
+		 * @param {Object} isChecked
+		 */
+		checkAllGoods(state, isAllChecked) {
+			console.log(state.getAllCheckedStatus(), '购物车Store')
+			for (var i = 0; i < state.cart.length; i++) {
+				state.cart[i].goods_state = (isAllChecked) ? false : true
+			}
 			this.commit('m_cart/saveToStorage')
 		},
 		/**
@@ -58,6 +74,32 @@ export default {
 			let c = 0
 			state.cart.forEach(x => c += x.goods_count)
 			return c
+		},
+		/**
+		 * 获取选中的商品的总数量
+		 * @param {Object} state
+		 */
+		getCheckedGoodsSum(state) {
+			let result = 0
+			state.cart.forEach(x => {
+				if (x.goods_state) result += x.goods_count
+			})
+			return result
+		},
+		getCheckedGoodsAmount(state) {
+			let result = 0
+			state.cart.forEach(x => {
+				if (x.goods_state) result += x.goods_count * x.goods_price
+			})
+			return result
+		},
+		getAllCheckedStatus(state) {
+			let num = 0
+			state.cart.forEach(x => {
+				if (x.goods_state) num++
+			})
+			// console.log(num === (state.cart.length ))
+			return num === (state.cart.length) ? true : false
 		}
 	}
 }
