@@ -8,7 +8,8 @@ export default {
 		 *每个商品的信息对象，都包含如下6个属性
 		 *{goods_id,goods_name,goods_price,goods_count,goods_small_logo,goods_state}
 		 */
-		cart: JSON.parse(uni.getStorageSync('cart') || '[]') //读取本地存储的购物车数据，对 cart 数组进行初始化
+		cart: JSON.parse(uni.getStorageSync('cart') || '[]'), //读取本地存储的购物车数据，对 cart 数组进行初始化
+		test_isAllChecked: false
 
 	}),
 	watch: {
@@ -47,12 +48,19 @@ export default {
 		/**
 		 * 将所有购物车中的商品状态设置为isChecked属性
 		 * @param {Object} state
-		 * @param {Object} isChecked
+		 * @param {Object} statusMy
 		 */
-		checkAllGoods(state, isAllChecked) {
-			console.log(state.getAllCheckedStatus(), '购物车Store')
+		checkAllGoods(state, statusMy) {
+			console.log('购物车Store', statusMy === 'true', Boolean(statusMy), (Boolean(statusMy) === true))
+
 			for (var i = 0; i < state.cart.length; i++) {
-				state.cart[i].goods_state = (isAllChecked) ? false : true
+
+				if (statusMy.isAllCheckedStatus) {
+					state.cart[i].goods_state = false
+				} else {
+					state.cart[i].goods_state = true
+				}
+
 			}
 			this.commit('m_cart/saveToStorage')
 		},

@@ -1,8 +1,8 @@
 <template>
 	<view>
 		<view class="settleContainer">
-			<view class="radioContainer" @click="checkAll">
-				<radio color="#c00000" :checked="isAllChecked" /><text>全选</text>
+			<view class="radioContainer">
+				<radio color="#c00000" :checked="isAllCheckedStatus" @click="checkAll" /><text>全选</text>
 			</view>
 			<view class="amountBox">
 				合计：<text class="amount">￥{{checkedGoodsAmount}}</text>
@@ -20,7 +20,7 @@
 		props: {
 			checkedGoodsSum: 0,
 			checkedGoodsAmount: 0,
-			isAllChecked: false
+			isAllCheckedStatus: null
 		},
 		data() {
 			return {
@@ -29,9 +29,9 @@
 		},
 		methods: {
 			checkAll() {
-				// console.log(this.isAllChecked,'结算组件')
+				console.log(this.isAllCheckedStatus, '结算组件')
 				this.$emit('check-all', {
-					isAllChecked: this.isAllChecked
+					isAllCheckedStatus: this.isAllCheckedStatus
 				})
 			}
 		}
@@ -48,6 +48,7 @@
 		position: fixed;
 		bottom: 0;
 		left: 0;
+		z-index: 999;
 
 		display: flex;
 		justify-content: space-between;

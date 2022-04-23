@@ -42,7 +42,6 @@
 							<image :src="smallImageItem.image_src" :style="{width:smallImageItem.image_width+'rpx'}"
 								mode="widthFix"></image>
 						</navigator>
-
 					</view>
 				</view>
 			</view>

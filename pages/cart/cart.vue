@@ -34,7 +34,7 @@
 		</view>
 		<!-- 结算栏 -->
 		<my-settle :checkedGoodsSum="getCheckedGoodsSum" :checkedGoodsAmount="getCheckedGoodsAmount"
-			:isAllChecked="getAllCheckedStatus" @checkAll="checkAllGoodsHandler"></my-settle>
+			:isAllCheckedStatus="getAllCheckedStatus"  @check-all="checkAllGoodsHandler"></my-settle>
 	</view>
 
 </template>
