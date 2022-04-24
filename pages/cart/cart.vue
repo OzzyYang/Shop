@@ -1,40 +1,47 @@
 <template>
 	<view>
-		<!-- 地址栏 -->
-		<view v-if="JSON.stringify(address)==='{}'" class="addAddressButton">
-			<button type="primary" @click="chooseAddressHandler"
-				style="font-size:14px;background-color: #c00000;font-weight: bold;margin: 50upx 10upx;">
-				请选择收货地址+
-			</button>
+		<view v-if="cart.length!==0" class="cartContainer">
+			<!-- 地址栏 -->
+			<view v-if="JSON.stringify(address)==='{}'" class="addAddressButton">
+				<button type="primary" @click="chooseAddressHandler"
+					style="font-size:14px;background-color: #c00000;font-weight: bold;margin: 50upx 10upx;">
+					请选择收货地址+
+				</button>
+			</view>
+			<view v-else class="addressArea">
+				<my-address :address="address" @address-edit="chooseAddressHandler"></my-address>
+			</view>
+
+			<image src="../../static/cart_border@2x.png" mode="widthFix" style="width: 100%;"></image>
+
+			<!-- 购物车标题 -->
+			<view class="cartTitleContainer">
+				<uni-icons type="cart" size="30"></uni-icons>
+				<view class="titleText">购物车</view>
+			</view>
+
+			<!-- 添加进入购物车中的商品 -->
+			<view class="goodsListContainer">
+				<!-- 可以滑动操作的商品项 -->
+				<uni-swipe-action>
+					<!-- 滑动操作 -->
+					<uni-swipe-action-item class="goodSwipeItem" v-for="(item,index) in cart" :key="index"
+						:threshold="0" :right-options="goodOptions" @click="swipeButtonHandler(item)">
+						<!-- 商品项 -->
+						<goods-in-cart class="good" :good="item" @radio-change="radioChangeHandler"
+							@numberbox-change="numberboxChangeHandler"></goods-in-cart>
+					</uni-swipe-action-item>
+				</uni-swipe-action>
+			</view>
+			<!-- 结算栏 -->
+			<my-settle :checkedGoodsSum="getCheckedGoodsSum" :checkedGoodsAmount="getCheckedGoodsAmount"
+				:isAllCheckedStatus="getAllCheckedStatus" @check-all="checkAllGoodsHandler"></my-settle>
 		</view>
-		<view v-else class="addressArea">
-			<my-address :address="address" @address-edit="chooseAddressHandler"></my-address>
+		<view v-else class="noGoodsContainer">
+			<image src="../../static/cart_empty@2x.png" mode="aspectFit"></image>
+			<text>购物车空空如也~</text>
 		</view>
 
-		<image src="../../static/cart_border@2x.png" mode="widthFix" style="width: 100%;"></image>
-
-		<!-- 购物车标题 -->
-		<view class="cartTitleContainer">
-			<uni-icons type="cart" size="30"></uni-icons>
-			<view class="titleText">购物车</view>
-		</view>
-
-		<!-- 添加进入购物车中的商品 -->
-		<view class="goodsListContainer">
-			<!-- 可以滑动操作的商品项 -->
-			<uni-swipe-action>
-				<!-- 滑动操作 -->
-				<uni-swipe-action-item class="goodSwipeItem" v-for="(item,index) in cart" :key="index" :threshold="0"
-					:right-options="goodOptions" @click="swipeButtonHandler(item)">
-					<!-- 商品项 -->
-					<goods-in-cart class="good" :good="item" @radio-change="radioChangeHandler"
-						@numberbox-change="numberboxChangeHandler"></goods-in-cart>
-				</uni-swipe-action-item>
-			</uni-swipe-action>
-		</view>
-		<!-- 结算栏 -->
-		<my-settle :checkedGoodsSum="getCheckedGoodsSum" :checkedGoodsAmount="getCheckedGoodsAmount"
-			:isAllCheckedStatus="getAllCheckedStatus"  @check-all="checkAllGoodsHandler"></my-settle>
 	</view>
 
 </template>
@@ -112,7 +119,7 @@
 				this.updateAddress()
 			},
 			checkAllGoodsHandler(isAllChecked) {
-				console.log(isAllChecked,'购物车组件')
+				console.log(isAllChecked, '购物车组件')
 				this.checkAllGoods(isAllChecked)
 			}
 		},
@@ -153,6 +160,20 @@
 	}
 
 	.goodsListContainer {
-		padding-bottom: 100upx;
+		padding-bottom: 104upx;
+	}
+
+	.noGoodsContainer {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding-top: 300upx;
+		font-size: 28upx;
+		color: #b8b8b8;
+		
+		image{
+			width: 180upx;
+			height: 180upx;
+		}
 	}
 </style>

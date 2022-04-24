@@ -10,7 +10,7 @@
 			<view class="goodInfo">
 				<view class="goodTitle">{{good.goods_name}}</view>
 				<view class="priceAndCount">
-					<view class="price">￥{{good.goods_price}}</view>
+					<view class="price">￥{{good.goods_price.toFixed(2)}}</view>
 					<uni-number-box class="count" :min="1" :value="good.goods_count" @change="numberboxHandler" />
 				</view>
 			</view>
@@ -41,7 +41,7 @@
 					// 商品的 Id
 					goods_id: this.good.goods_id,
 					// 商品最新的勾选状态
-					goods_state: !this.good.goods_state
+					// goods_state: !this.good.goods_state
 				})
 			},
 			numberboxHandler(newValue) {

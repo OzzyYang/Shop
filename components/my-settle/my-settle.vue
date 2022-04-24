@@ -5,10 +5,11 @@
 				<radio color="#c00000" :checked="isAllCheckedStatus" @click="checkAll" /><text>全选</text>
 			</view>
 			<view class="amountBox">
-				合计：<text class="amount">￥{{checkedGoodsAmount}}</text>
+				合计：<text class="amount">￥{{checkedGoodsAmount.toFixed(2)}}</text>
 			</view>
 			<view class="settleButton">
-				<button type="default">结算<text class="count">({{checkedGoodsSum}})</text></button>
+				<button type="default">结算<text
+						class="count">({{checkedGoodsSum>99?("99+"):checkedGoodsSum}})</text></button>
 			</view>
 		</view>
 	</view>
@@ -43,6 +44,7 @@
 		width: 100%;
 		height: 100upx;
 		background-color: white;
+		border: 2upx solid #efefef; 
 
 		/*固定在底部*/
 		position: fixed;
@@ -55,10 +57,11 @@
 		align-items: center;
 
 		.radioContainer {
-			width: 130upx;
+			width: 125upx;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
+			font-size: 30upx;
 
 			radio {
 				width: 48upx;
@@ -68,6 +71,7 @@
 		}
 
 		.amountBox {
+			font-size: 30upx;
 			.amount {
 				color: #C00000;
 			}
@@ -83,6 +87,7 @@
 				width: 100%;
 				background-color: #c00000;
 				border-radius: 0;
+				font-size: 30upx;
 				display: flex;
 				justify-content: center;
 				align-items: center;

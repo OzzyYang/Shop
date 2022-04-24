@@ -102,6 +102,8 @@ export default {
 			return result
 		},
 		getAllCheckedStatus(state) {
+			//如果购物车里面没有东西 则直接返回false
+			if(state.cart.length===0) return false
 			let num = 0
 			state.cart.forEach(x => {
 				if (x.goods_state) num++
