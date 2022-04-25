@@ -1,10 +1,10 @@
 <template>
 	<view>
 		<view class="goodInfoContainer">
-			<view class="goodRadio">
-				<radio color="#c00000" :checked="good.goods_state" @click="radioClickHandler" />
+			<view class="goodRadio" @click="radioClickHandler" >
+				<radio color="#c00000" :checked="good.goods_state" />
 			</view>
-			<view class="goodLogo">
+			<view class="goodLogo" @click="radioClickHandler" >
 				<image :src="good.goods_small_logo" mode="aspectFit"></image>
 			</view>
 			<view class="goodInfo">
@@ -41,7 +41,7 @@
 					// 商品的 Id
 					goods_id: this.good.goods_id,
 					// 商品最新的勾选状态
-					// goods_state: !this.good.goods_state
+					goods_state: !this.good.goods_state
 				})
 			},
 			numberboxHandler(newValue) {

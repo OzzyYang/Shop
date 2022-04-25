@@ -24,8 +24,13 @@ export default {
 		 * @param {Object} state
 		 * @param {Object} address
 		 */
-		async updateAddress(state) {
-			console.log('运行中')
+		async updateAddress(state, isReset) {
+			//用于实现退出登录功能
+			if (isReset) {
+				state.address = '{}'
+				this.commit('m_address/saveToStorage')
+				return
+			}
 			//调用小程序提供的chooseAddress()方法，即可使用选择收货地址的功能
 			//返回值是一个数组：第一项为错误对象；第二项为成功之后的收货地址对象
 			const [err, succ] = await uni.chooseAddress().catch(err => err)
