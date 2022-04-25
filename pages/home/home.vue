@@ -52,6 +52,9 @@
 <script>
 	// 导入自己封装的 mixin 模块
 	import badgeMix from '@/mixins/tabBar_badge.js'
+	import {
+		mapMutations
+	} from 'vuex'
 
 
 	export default {
@@ -70,6 +73,7 @@
 			this.getSwiperList()
 			this.getNavigationList()
 			this.getFloorList()
+			// this.updateFromStorage()
 		},
 		methods: {
 			/**

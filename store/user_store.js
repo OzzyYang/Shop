@@ -5,7 +5,7 @@ export default {
 	//模块的state数据
 	state: () => ({
 		//用户的鉴权字符串
-		token: JSON.parse(uni.getStorageSync('userToken') || ''),
+		token:  JSON.parse(uni.getStorageSync('userToken') || '{}'),
 		//用户的基本信息
 		userInfo: JSON.parse(uni.getStorageSync('userInfo') || '{}'),
 		//用户的重定向信息，{open-type,from}

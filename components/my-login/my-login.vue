@@ -28,8 +28,7 @@
 				uni.getUserProfile({
 					desc: "测试",
 					lang: "zh_CN",
-					success(res) {
-					},
+					success(res) {},
 					fail(res) {
 						return uni.$showMsg('登陆授权失败', 2000, 'error')
 					}
@@ -71,7 +70,7 @@
 				}
 				uni.$showMsg('登陆成功', 2000, 'success')
 				this.updateUserToken(isTest ?
-					"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEyLCJpYXQiOjE1MjU0MDIyMjMsImV4cCI6MTUyNTQ4ODYyM30.g-4GtEQNPwT_Xs0Pq7Lrco_9DfHQQsBiOKZerkO-O-o" :
+					"test_for_token" :
 					loginResult.message.token)
 				this.navigateBack()
 			},
